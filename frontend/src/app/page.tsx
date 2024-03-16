@@ -1,6 +1,7 @@
-import Image from "next/image";
 import React, {Suspense} from "react";
 import {Books} from "@/app/books";
+
+export const runtime = 'edge'
 
 export default async function Home() {
 

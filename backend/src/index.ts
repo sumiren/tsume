@@ -1,6 +1,5 @@
 import {Context, Hono} from 'hono'
 import { PrismaClient } from '@prisma/client'
-import { v4 as uuid } from 'uuid'
 import {PrismaTiDBCloud} from "@tidbcloud/prisma-adapter";
 import { connect } from "@tidbcloud/serverless";
 
