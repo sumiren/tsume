@@ -7,6 +7,8 @@
     "@neondatabase/serverless": "^0.9.0",
     "@prisma/adapter-neon": "^5.11.0",
     "@prisma/client": "^5.11.0",
+    "@tidbcloud/prisma-adapter": "^5.11.0",
+    "@tidbcloud/serverless": "^0.1.1",
     "hono": "^4.1.0",
     "prisma": "^5.11.0",
     "uuid": "^9.0.1"

@@ -1,8 +1,8 @@
 import {Context, Hono} from 'hono'
 import { PrismaClient } from '@prisma/client'
-import { PrismaNeon } from '@prisma/adapter-neon'
-import { Pool } from '@neondatabase/serverless'
 import { v4 as uuid } from 'uuid'
+import {PrismaTiDBCloud} from "@tidbcloud/prisma-adapter";
+import { connect } from "@tidbcloud/serverless";
 
 const app = new Hono()
 
@@ -12,21 +12,23 @@ export interface Env {
 
 
 app.get('/', async (c) => {
+  const start = new Date();
+
   const prisma = prisman(c)
 
-   await prisma.book.create({
-     data: {
-       id: uuid(),
-       name: "いい本"
-
-     }
-   })
   const books = await prisma.book.findMany({
     where: {
       name: "いい本"
-    }
+    },
+    take: 1
   })
-  return new Response(books[0].id, {
+
+  const end = new Date();
+
+
+  const duration = end.getTime() - start.getTime();
+  return new Response(
+    `${books[0].id}...${duration}ms` , {
     status: 200,
     headers: {
       "Content-Type": "text/plain",
@@ -44,9 +46,11 @@ const prisman = (c:  Context) => {
   }
 
 
-  const neon = new Pool({ connectionString: c.env.DATABASE_URL })
-  const adapter = new PrismaNeon(neon)
-  const newPrisma = new PrismaClient({ adapter })
+  const connection = connect({ url: c.env.DATABASE_URL });
+  const adapter = new PrismaTiDBCloud(connection);
+  const newPrisma = new PrismaClient({ adapter });
+
+
   prisMap.set(c.env.DATABASE_URL, newPrisma)
   return newPrisma
 }
