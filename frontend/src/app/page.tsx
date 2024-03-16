@@ -5,7 +5,7 @@ export const runtime = 'edge'
 
 export default async function Home() {
   return (
-    <main className="p-24">
+    <main className="px-24">
       <section className="mt-16">
         <p className="text-2xl font-bold">
           your books:
