@@ -1,20 +1,17 @@
 import React from "react";
-import {auth} from "@clerk/nextjs";
+import {BookList} from "@/app/book-list";
 
 export const runtime = 'edge'
 
 export default async function Home() {
-  const { getToken, userId } = auth();
-  console.log("userId:", userId);
-  const res = await fetch(`${process.env.API_HOST}`, {
-    cache: "no-cache",
-    headers: {
-      "Authorization": `Bearer ${(await getToken())}`,
-    }
-  });
   return (
     <main className="p-24">
-      app
+      <section className="mt-16">
+        <p className="text-2xl font-bold">
+          your books:
+        </p>
+      </section>
+      <BookList/>
     </main>
   );
 }

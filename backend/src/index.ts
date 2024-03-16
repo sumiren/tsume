@@ -11,7 +11,7 @@ export interface Env {
 }
 
 
-app.get('/', async (c) => {
+app.get('/books', async (c) => {
   const header = c.req.header("Authorization");
   if (!header) {
     return new Response(
@@ -25,7 +25,32 @@ app.get('/', async (c) => {
   }
 
   const jwt = decodeJwt(header.substring(7))
-  console.log("jwt:", jwt.payload.sub)
+
+  const prisma = prisman(c)
+  const user = await prisma.user.findUnique({
+    where: {
+      idaas_userid: jwt.payload.sub
+    }
+  })
+
+  const books = await prisma.book.findMany({
+    where: {
+      userid: user.id
+    }
+  })
+
+  console.log(books)
+
+  return new Response(
+    JSON.stringify({
+      books,
+    })
+    , {
+      status: 200,
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
 
 })
 
@@ -57,7 +82,6 @@ app.get('/architecture-test', async (c) => {
 
 
 const prisman = (c:  Context) => {
-  console.log("DATABASE_URL", c.env.DATABASE_URL)
   const prisma = c.get(c.env.DATABASE_URL);
   if (prisma) {
     return prisma
