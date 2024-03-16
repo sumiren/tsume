@@ -39,8 +39,6 @@ app.get('/books', async (c) => {
     }
   })
 
-  console.log(books)
-
   return new Response(
     JSON.stringify({
       books,
