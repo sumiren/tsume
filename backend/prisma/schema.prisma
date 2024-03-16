@@ -1,5 +1,5 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["driverAdapters"]
 }
 
@@ -11,4 +11,9 @@ datasource db {
 model book {
   id   String @id
   name String
+}
+
+model book_sample {
+  id   String  @id @db.VarChar(255)
+  name String? @db.VarChar(255)
 }

@@ -1,9 +1,10 @@
 import React from "react";
 
-export async function Books() {
-  const res = await fetch(`${process.env.API_HOST}`, {
+export async function ArchitectureTest() {
+  const res = await fetch(`${process.env.API_HOST}/architecture-test`, {
     cache: "no-cache",
   });
+
   const data = await res.json();
   return <div>
     <section className="mt-16">
@@ -19,7 +20,7 @@ export async function Books() {
         items:
       </p>
       <ul className="mt-8 ml-2">
-        {data.books.map((book: any) => <li key={book.id}>・{book.id}</li>)}
+        {data.books.map((book: any) => <li key={book.id}>・{book.name}</li>)}
       </ul>
     </section>
   </div>

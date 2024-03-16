@@ -1,16 +1,20 @@
-import React, {Suspense} from "react";
-import {Books} from "@/app/books";
+import React from "react";
+import {auth} from "@clerk/nextjs";
 
 export const runtime = 'edge'
 
 export default async function Home() {
-
+  const { getToken, userId } = auth();
+  console.log("userId:", userId);
+  const res = await fetch(`${process.env.API_HOST}`, {
+    cache: "no-cache",
+    headers: {
+      "Authorization": `Bearer ${(await getToken())}`,
+    }
+  });
   return (
     <main className="p-24">
-      <h1 className="text-3xl">Next.js App Router + Streaming + Partial Prerendering</h1>
-      <Suspense fallback={<p className="mt-16 text-xl">fetching on Next.js server side...</p>}>
-        <Books/>
-      </Suspense>
+      app
     </main>
   );
 }
