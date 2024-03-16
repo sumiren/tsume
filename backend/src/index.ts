@@ -17,7 +17,7 @@ app.get('/', async (c) => {
   const prisma = prisman(c)
 
   const books = await prisma.book.findMany({
-    take: 100
+    take: 20
   })
 
   const end = new Date();
