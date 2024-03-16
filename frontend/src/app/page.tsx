@@ -1,7 +1,6 @@
 import Image from "next/image";
 import React, {Suspense} from "react";
-
-export const revalidate = 0;
+import {Books} from "@/app/books";
 
 export default async function Home() {
 
@@ -15,7 +14,4 @@ export default async function Home() {
   );
 }
 
-async function Books() {
-  const res = await fetch(`${process.env.API_HOST}`);
-  return <div>fetching result...{(await res.json()).result}</div>
-}
+
