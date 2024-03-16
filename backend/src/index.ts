@@ -28,10 +28,13 @@ app.get('/', async (c) => {
 
   const duration = end.getTime() - start.getTime();
   return new Response(
-    `${books[0].id}...${duration}ms` , {
+    JSON.stringify({
+      result: `${books[0].id}...${duration}ms`
+    })
+     , {
     status: 200,
     headers: {
-      "Content-Type": "text/plain",
+      "Content-Type": "application/json",
     },
   });
 })
