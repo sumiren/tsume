@@ -17,10 +17,7 @@ app.get('/', async (c) => {
   const prisma = prisman(c)
 
   const books = await prisma.book.findMany({
-    where: {
-      name: "いい本"
-    },
-    take: 1
+    take: 100
   })
 
   const end = new Date();
@@ -29,7 +26,8 @@ app.get('/', async (c) => {
   const duration = end.getTime() - start.getTime();
   return new Response(
     JSON.stringify({
-      result: `${books[0].id}...${duration}ms`
+      books,
+      tidbQueryDuration: `${duration}ms`
     })
      , {
     status: 200,
