@@ -1,8 +1,6 @@
 import React, {Suspense} from "react";
 import {BookList} from "@/app/book-list";
 
-export const runtime = 'edge'
-
 export default async function Home() {
   return (
     <main className="px-24">

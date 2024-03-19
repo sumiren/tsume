@@ -2,8 +2,6 @@
 import React from "react";
 import {useSignIn} from "@clerk/nextjs";
 
-export const runtime = 'edge'
-
 export function SignInButton() {
   const { signIn, isLoaded: signInLoaded } = useSignIn()
 

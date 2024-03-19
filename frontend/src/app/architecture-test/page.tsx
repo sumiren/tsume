@@ -1,7 +1,6 @@
 import React, {Suspense} from "react";
 import {ArchitectureTest} from "@/app/architecture-test/architecture-test";
 
-export const runtime = 'edge'
 
 export default async function Home() {
   return (

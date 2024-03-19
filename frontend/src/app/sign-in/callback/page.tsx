@@ -2,6 +2,7 @@ import React from "react";
 import {currentUser } from "@clerk/nextjs/server";
 import {CallbackHandler} from "@/app/sign-in/callback/callback-handler";
 import {redirect} from "next/navigation";
+import {ClerkProvider} from "@clerk/nextjs";
 
 export const runtime = 'edge'
 
@@ -12,6 +13,8 @@ export default async function Home(searchParams : any) {
   if (user) redirect("/");
 
   return (
-    <CallbackHandler searchParams={searchParams}/>
+    <ClerkProvider>
+      <CallbackHandler searchParams={searchParams}/>
+    </ClerkProvider>
   )
 }
