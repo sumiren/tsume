@@ -1,5 +1,4 @@
-// ppr + clerk auth()と一緒だとなぜか落ちるため
-export const revalidate = 0;
+export const runtime = 'edge'
 
 export default async function NotFound() {
   return (

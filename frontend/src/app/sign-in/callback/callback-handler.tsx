@@ -3,7 +3,6 @@ import React from "react";
 import {useClerk } from "@clerk/nextjs";
 
 export function CallbackHandler({ searchParams}  : {searchParams:  any}) {
-
   const { handleRedirectCallback } = useClerk()
 
   React.useEffect(() => {
