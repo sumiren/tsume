@@ -1,5 +1,5 @@
 import React from "react";
-import {currentUser} from "@clerk/nextjs";
+import {currentUser} from "@clerk/nextjs/server";
 import {redirect} from "next/navigation";
 import {SignInButton} from "@/app/sign-in/sign-in-button";
 

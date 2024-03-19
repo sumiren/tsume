@@ -1,5 +1,5 @@
 import React from "react";
-import {auth} from "@clerk/nextjs";
+import {auth} from "@clerk/nextjs/server";
 
 export async function BookList() {
   const { getToken } = auth();
